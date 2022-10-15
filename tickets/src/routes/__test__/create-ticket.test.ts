@@ -108,5 +108,4 @@ it('Publishes an event', async () => {
         })
         .expect(201)
 
-    expect(natsWrapper.client.publish).toHaveBeenCalled()
 })

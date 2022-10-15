@@ -4,7 +4,7 @@ import { app } from '../app'
 import request from 'supertest'
 import jwt from 'jsonwebtoken'
 
-jest.mock('../__mocks__/nats-wrapper.ts') //Instead of importing the real natsWrapper, we will import the mock one with the fake implementation
+jest.mock('../nats-wrapper.ts') //Instead of importing the real natsWrapper, we tell our test suite we are going to mock it
 
 let mongo: any
 
