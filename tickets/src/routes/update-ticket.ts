@@ -4,7 +4,8 @@ import {
     validateRequest,
     NotFoundError,
     requireAuth,
-    NotAuthorizedError
+    NotAuthorizedError,
+    BadRequestError
 } from '@legit-admit/common'
 import { Ticket } from '../models/ticket'
 import { TicketUpdatedPublisher } from '../events/publishers/ticket-updated-publisher';
@@ -32,6 +33,10 @@ router.put('/api/tickets/:id', requireAuth, [
         throw new NotAuthorizedError()
     }
 
+    if (ticket.orderId) {
+        throw new BadRequestError('This ticket is pending an order and cannot be updated')
+    }
+
     ticket.set({
         title: req.body.title,
         price: req.body.price
@@ -43,7 +48,8 @@ router.put('/api/tickets/:id', requireAuth, [
         id: ticket.id,
         title: ticket.title,
         price: ticket.price,
-        userId: ticket.userId
+        userId: ticket.userId,
+        version: ticket.version
     })
 
     res.send(ticket)

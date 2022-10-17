@@ -1,7 +1,7 @@
 import request from 'supertest'
 import mongoose from 'mongoose'
 import { app } from '../../app'
-
+import { Ticket } from '../../models/ticket'
 
 
 
@@ -110,4 +110,29 @@ it('Updates ticket provided valid inputs', async () => {
 
     expect(ticketResponse.body.title).toEqual('Successful Test')
     expect(ticketResponse.body.price).toEqual(666)
+})
+
+it('Will give an error if trying to update a ticket which is reserved', async () => {
+    const cookie = global.signin()
+
+    const response = await request(app)
+        .post('/api/tickets')
+        .set('Cookie', cookie)
+        .send({
+            title: 'Some shit test',
+            price: 69
+        })
+
+    const ticket = await Ticket.findById(response.body.id)
+    ticket!.set({ orderId: new mongoose.Types.ObjectId().toHexString() })
+    await ticket!.save()
+
+    await request(app)
+        .put(`/api/tickets/${response.body.id}`)
+        .set('Cookie', cookie)
+        .send({
+            title: 'Successful Test',
+            price: 666
+        })
+        .expect(400)
 })
