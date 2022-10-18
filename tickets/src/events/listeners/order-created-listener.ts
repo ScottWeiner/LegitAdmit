@@ -7,6 +7,7 @@ import { TicketUpdatedPublisher } from "../publishers/ticket-updated-publisher";
 export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
     readonly subject = Subjects.OrderCreated
 
+
     queueGroupName = queueGroupName
 
     async onMessage(data: OrderCreatedEvent['data'], msg: Message) {
@@ -31,7 +32,7 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
             price: ticketToReserve.price,
             title: ticketToReserve.title,
             userId: ticketToReserve.userId,
-            orderId: ticketToReserve.orderId,
+            orderId: ticketToReserve.orderId || undefined,
             version: ticketToReserve.version
         })
 
