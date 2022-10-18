@@ -8,7 +8,7 @@ import { Ticket } from '../models/ticket'
 import { OrderCreatedPublisher } from '../events/publishers/order-created-publisher'
 import { natsWrapper } from '../nats-wrapper'
 
-const EXPIRATION_WINDOW_SECONDS = 15 * 60
+const EXPIRATION_WINDOW_SECONDS = 1 * 60
 
 
 const router = express.Router()
@@ -52,7 +52,8 @@ router.post('/api/orders', requireAuth, [
         userId: req.currentUser!.id,
         status: OrderStatus.Created,
         expiresAt: expirationDate,
-        ticket: ticket
+        ticket: ticket,
+        version: 0
     })
 
     await newOrder.save()
@@ -63,7 +64,7 @@ router.post('/api/orders', requireAuth, [
         userId: newOrder.userId,
         expiresAt: newOrder.expiresAt.toISOString(),
         status: newOrder.status,
-
+        version: newOrder.version,
         ticket: {
             id: newOrder.ticket.id,
             price: newOrder.ticket.price,

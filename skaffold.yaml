@@ -16,14 +16,6 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: saweiner/client
-      context: client
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: '**/*.js'
-            dest: .
     - image: saweiner/tickets
       context: tickets
       docker:
@@ -39,4 +31,20 @@ build:
       sync:
         manual:
           - src: 'src/**/*.ts'
+            dest: .
+    - image: saweiner/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: saweiner/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
             dest: .
