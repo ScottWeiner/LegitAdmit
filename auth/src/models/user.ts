@@ -1,23 +1,26 @@
 import mongoose from 'mongoose'
 import { Password } from '../services/password';
 
-//interface describing properties that describe requirements for an new user
+//interface describing properties that describe requirements
+//for creating a new User document in Mongo 
 interface UserAttrs {
     email: string;
     password: string;
 }
 
-//Interface that describes properties & methods that a user model has
-
-interface UserModel extends mongoose.Model<UserDoc> {
-    build(attrs: UserAttrs): UserDoc;
-}
-
-//interface that describes the properties that a user document has
+//interface that describes the properties that a user document (ie record) in Mongo has
 interface UserDoc extends mongoose.Document {
     email: string;
     password: string;
 }
+
+
+//Interface that describes properties & methods that a user model has
+interface UserModel extends mongoose.Model<UserDoc> {
+    build(attrs: UserAttrs): UserDoc;
+}
+
+
 
 const userSchema = new mongoose.Schema({
     email: {
