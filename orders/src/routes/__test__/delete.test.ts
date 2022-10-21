@@ -7,6 +7,7 @@ import { natsWrapper } from '../../nats-wrapper'
 
 it('Cancels an order that the user owns which is not already cancelled', async () => {
     const ticket = Ticket.build({
+        id: new mongoose.Types.ObjectId().toHexString(),
         title: 'Test Event',
         price: 50
     })
@@ -38,6 +39,7 @@ it('Cancels an order that the user owns which is not already cancelled', async (
 
 it('emits a ordered:cancelled event', async () => {
     const ticket = Ticket.build({
+        id: new mongoose.Types.ObjectId().toHexString(),
         title: 'Test Event',
         price: 50
     })

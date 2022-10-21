@@ -7,6 +7,7 @@ import { Ticket } from '../../models/ticket'
 it('Finds the order that belongs to this user', async () => {
 
     const ticket = Ticket.build({
+        id: new mongoose.Types.ObjectId().toHexString(),
         title: 'Test Event',
         price: 50
     })
@@ -31,7 +32,7 @@ it('Finds the order that belongs to this user', async () => {
 
 
 
-    expect(fetchedOrder.order.id).toEqual(order.body.id)
+    expect(fetchedOrder.id).toEqual(order.body.id)
 
 
 })
