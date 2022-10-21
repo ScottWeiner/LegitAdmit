@@ -6,7 +6,7 @@ import { OrderStatus } from '@legit-admit/common';
 import { stripe } from '../stripe';
 import { Payment } from '../models/payment';
 import { PaymentCreatedPublisher } from '../publishers/payment-created-publisher';
-import { natsWrapper } from '../../../orders/src/nats-wrapper';
+import { natsWrapper } from '../nats-wrapper'
 
 
 const router = express.Router()
