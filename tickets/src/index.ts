@@ -6,7 +6,7 @@ import { OrderCancelledListener } from './events/listeners/order-cancelled-liste
 
 const start = async () => {
 
-    console.log('Starting up!!!!')
+    console.log('Starting up Tickets sercice!!')
 
     if (!process.env.JWT_KEY) {
         throw new Error('JWT_KEY environment variable is not defined.')
