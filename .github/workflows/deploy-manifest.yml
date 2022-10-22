@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: digitalocean/action-doctl@v2
-        with: 
+        with:
           token:  ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - run: doctl kubernetes cluster kubeconfig legit-admit
       - run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s/k8s-prod
