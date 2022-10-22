@@ -2,7 +2,7 @@ import request from 'supertest'
 import mongoose from 'mongoose'
 import { app } from '../../app'
 
-it('Returns a 404 if ticket is not found', async () => {
+/*it('Returns a 404 if ticket is not found', async () => {
     const id = new mongoose.Types.ObjectId().toHexString()
 
     await request(app)
@@ -10,7 +10,7 @@ it('Returns a 404 if ticket is not found', async () => {
         //.set'Cookie', global.signin())
         .send()
         .expect(404)
-})
+})*/
 
 it('Returns the ticket when the ticket is found', async () => {
     const title = 'Awesome Test Concert'
