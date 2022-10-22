@@ -14,7 +14,7 @@ import { app } from '../../app'
 
 it('Returns the ticket when the ticket is found', async () => {
     const title = 'Awesome Test Concert'
-    const price = 20
+    const price = 30
 
     const response = await request(app)
         .post('/api/tickets')
