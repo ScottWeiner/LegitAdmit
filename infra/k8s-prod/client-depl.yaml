@@ -21,6 +21,8 @@ spec:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
+            - name: API_URL
+              value: "www.legit-admit.xyz"
 ---
 apiVersion: v1
 kind: Service

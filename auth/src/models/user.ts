@@ -6,12 +6,26 @@ import { Password } from '../services/password';
 interface UserAttrs {
     email: string;
     password: string;
+    firstName: string;
+    lastName: string;
+    address1: string;
+    address2: string;
+    city: string;
+    state: string;
+    zip: string;
 }
 
 //interface that describes the properties that a user document (ie record) in Mongo has
 interface UserDoc extends mongoose.Document {
     email: string;
     password: string;
+    firstName: string;
+    lastName: string;
+    address1: string;
+    address2: string;
+    city: string;
+    state: string;
+    zip: string;
 }
 
 
@@ -30,7 +44,42 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    firstName: {
+        type: String,
+        required: true,
+        default: ''
+    },
+    lastName: {
+        type: String,
+        required: true,
+        default: ''
+    },
+    address1: {
+        type: String,
+        required: true,
+        default: ''
+    },
+    address2: {
+        type: String,
+        required: false,
+        default: ''
+    },
+    city: {
+        type: String,
+        required: true,
+        default: ''
+    },
+    state: {
+        type: String,
+        required: true,
+        default: ''
+    },
+    zip: {
+        type: String,
+        required: true,
+        default: ''
+    },
 }, {
     toJSON: {
         transform(doc, ret) {
