@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const LandingPage = ({ currentUser, tickets }) => {
 
-    console.log('welcome to LegitAdmit!')
+    console.log('welcome to LegitAdmit!!!')
 
     const ticketList = tickets.map(ticket => {
         return (
