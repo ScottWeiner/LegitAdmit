@@ -29,6 +29,7 @@ kind: Service
 metadata:
   name: client-srv
 spec:
+  externalTrafficPolicy: Cluster
   selector:
     app: client
   ports:
